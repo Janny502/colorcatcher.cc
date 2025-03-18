@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.game-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.color-display {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid #333;
+    margin-top: 5px;
+}
+
+#game-area {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: #eee;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.color-element {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.color-element:hover {
+    transform: scale(1.05);
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+#game-over {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 100;
+}
+
+#game-over h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#game-over p {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 在 CSS 文件末尾添加 */
+@media (max-width: 768px) {
+    .game-container {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #game-area {
+        height: 300px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* 添加暂停覆盖层样式 */
+#pause-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#pause-overlay h2 {
+    color: white;
+    font-size: 24px;
+}
+
+/* 添加教程样式 */
+#tutorial {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+#tutorial h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#tutorial ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+#tutorial li {
+    margin-bottom: 8px;
+}
+
+#close-tutorial {
+    display: block;
+    margin: 0 auto;
+}
+
+/* 添加进度条样式 */
+.progress-container {
+    width: 100%;
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0;
+    transition: width 0.3s;
+}
+
+/* 添加升级消息样式 */
+/* 成就通知样式 */
+.achievement-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(76, 175, 80, 0.9);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    transition: opacity 1s;
+}
+
+/* 升级消息样式 */
+.level-up-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(76, 175, 80, 0.9);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 100;
+    transition: opacity 1s;
+}
+
+/* 浮动文字样式 */
+.floating-text {
+    font-size: 18px;
+    z-index: 5;
+    transition: opacity 0.5s, top 0.5s;
+}
+
+/* 成就容器样式 */
+#achievements-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+#achievements-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.achievement-item {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #4CAF50;
+}
+
+.achievement-locked {
+    opacity: 0.5;
+    border-left-color: #999;
+}
