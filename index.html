@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Catcher - Fun Color Matching Game</title>
+    <meta name="description" content="Color Catcher is an exciting color matching game where players need to catch elements that match the target color. Test your reflexes and color recognition skills!">
+    <meta name="keywords" content="color game, color matching, reaction game, browser game, free online game">
+    <meta name="author" content="Your Name">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="game-header">
+        <h1>Color Catcher</h1>
+        <div class="game-intro">
+            <p>Welcome to <strong>Color Catcher</strong>, a fast-paced color matching game that tests your reflexes and color recognition skills!</p>
+            <p>Match the flying colored elements with the target color to score points and advance through levels. Watch out for special elements that can help or hinder your progress!</p>
+        </div>
+    </header>
+
+    <div class="game-container">
+        <div class="header">
+            <div class="target-color-container">
+                <h3>Target Color:</h3>
+                <div id="target-color" class="color-display"></div>
+            </div>
+            <div class="score-container">
+                <h3>Score: <span id="score">0</span></h3>
+                <h4>High Score: <span id="high-score">0</span></h4>
+            </div>
+            <div class="time-container">
+                <h3>Time: <span id="time">60</span>s</h3>
+                <h4>Level: <span id="level">1</span></h4>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        
+        <div id="game-area">
+            <!-- 游戏元素将在这里动态生成 -->
+            <div id="pause-overlay" class="hidden">
+                <h2>Game Paused</h2>
+                <p>Press ESC to continue</p>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="start-btn">Start Game</button>
+            <div class="difficulty">
+                <label>Difficulty:</label>
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <div class="sound-control">
+                <label>
+                    <input type="checkbox" id="sound-toggle" checked>
+                    Sound
+                </label>
+            </div>
+            <button id="help-btn">Help</button>
+        </div>
+    </div>
+    
+    <div id="game-over" class="hidden">
+        <h2>Game Over!</h2>
+        <p>Your Final Score: <span id="final-score">0</span></p>
+        <p>High Score: <span id="high-score">0</span></p>
+        <button id="restart-btn">Play Again</button>
+        <!-- 在控制区域添加主题选择器 -->
+        <div class="theme-control">
+            <label>Theme:</label>
+            <select id="theme-select">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="colorful">Colorful</option>
+            </select>
+        </div>
+        
+        <!-- 在游戏结束界面添加分享按钮 -->
+        <button id="share-btn">Share Score</button>
+        
+        <!-- 添加成就展示区域 -->
+        <div id="achievements-container" class="hidden">
+            <h2>Achievements</h2>
+            <div id="achievements-list">
+                <!-- 成就将在这里动态生成 -->
+            </div>
+            <button id="close-achievements">Close</button>
+        </div>
+    </div>
+    
+    <div id="tutorial" class="hidden">
+        <h2>How to Play</h2>
+        <ul>
+            <li><strong>Goal:</strong> Click on elements that match the target color</li>
+            <li><strong>Scoring:</strong> Correct click +10 points, Wrong click -5 points</li>
+            <li><strong>Special Elements:</strong>
+                <ul>
+                    <li><strong>Rainbow Element:</strong> Click to get extra points and time</li>
+                    <li><strong>Black Hole Element:</strong> Click will reduce points and time</li>
+                    <li><strong>Shifter Element:</strong> Color changes continuously, click when it matches the target</li>
+                </ul>
+            </li>
+            <li><strong>Controls:</strong> Press ESC to pause the game</li>
+        </ul>
+        <button id="close-tutorial">Close</button>
+    </div>
+
+    <!-- 音效资源 -->
+    <audio id="sound-correct" src="https://assets.mixkit.co/sfx/preview/mixkit-game-ball-tap-2073.mp3" preload="auto"></audio>
+    <audio id="sound-wrong" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" preload="auto"></audio>
+    <audio id="sound-special" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-bonus-229.mp3" preload="auto"></audio>
+    <audio id="sound-gameover" src="https://assets.mixkit.co/sfx/preview/mixkit-player-losing-or-failing-2042.mp3" preload="auto"></audio>
+    <audio id="sound-levelup" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" preload="auto"></audio>
+
+    <!-- 在音效资源后，script标签前 -->
+    <footer class="game-footer">
+        <div class="game-features">
+            <h2>Game Features</h2>
+            <ul>
+                <li><strong>Multiple Difficulty Levels:</strong> Choose from easy, medium, or hard to match your skill level</li>
+                <li><strong>Special Elements:</strong> Encounter rainbow bonuses, black hole penalties, and color-shifting elements</li>
+                <li><strong>Achievement System:</strong> Unlock achievements as you play and improve your skills</li>
+                <li><strong>Customizable Themes:</strong> Choose from light, dark, or colorful themes to suit your preference</li>
+                <li><strong>Share Your Score:</strong> Challenge your friends by sharing your high scores</li>
+            </ul>
+        </div>
+        <div class="how-to-play-summary">
+            <h2>How to Play</h2>
+            <p>Click or tap on elements that match the target color shown at the top of the screen. Each correct match earns you points, while incorrect matches deduct points. Special elements offer bonuses or penalties. Advance through levels by reaching score targets within the time limit!</p>
+        </div>
+        <p class="copyright">© 2023 Color Catcher Game. All rights reserved.</p>
+    </footer>
+
+    <script src="script_new.js"></script>
+</body>
+</html>
